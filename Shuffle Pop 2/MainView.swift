@@ -6,6 +6,7 @@
 //  Copyright © 2016 Ben Shockley. All rights reserved.
 //
 
+/*
 import Cocoa
 
 class MainView: NSView {
@@ -23,3 +24,4 @@ class MainView: NSView {
     }
     
 }
+*/

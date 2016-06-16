@@ -10,13 +10,45 @@ import Foundation
 import AppKit
 import GameKit
 
-class ViewController: NSViewController {
+class ViewController: NSViewController, DirectoryMonitorDelegate {
     var path: String = "/users/benshockley/Documents/pictures"
+    let directoryMonitor = DirectoryMonitor(URL: .fileURLWithPath("nil"))
     var randomIndex: Int = 0
     let mainView = NSView(frame: CGRect(x: 0.0, y: 0.0, width: 600.0, height: 600.0))
     let imageBox = NSImageView(frame: CGRect(x: 0.0, y: 0.0, width: 600.0, height: 600.0))
     var previouslyUsedNumbers: [Int] = []
     var imageArray: [String] = []
+    
+    func updateArray() {
+        let qualityOfServiceClass = QOS_CLASS_UTILITY
+        let newQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
+        dispatch_async(newQueue, createImageArray)
+        dispatch_async(dispatch_get_main_queue(), { print("Image array has been rebuilt")})
+        
+        randomIndex = 0
+        previouslyUsedNumbers = []
+    }
+    
+    func  directoryMonitorDidObserveChange(directoryMonitor: DirectoryMonitor) {
+        print("Directory contents have changed, refreshing the array.")
+        updateArray()
+    }
+    
+    func endDirectoryMonitor() {
+        directoryMonitor.stopMonitoring()
+    }
+    
+    func initiateDirectoryMonitor() {
+        directoryMonitor.URL = NSURL(fileURLWithPath: path)
+        directoryMonitor.delegate = self
+        directoryMonitor.startMonitoring()
+    }
+    
+   /* func setupFileWatcher() {
+        let filesToWatch: [String] = [path]
+        let fileWatcher = FileSystemWatcher(pathsToWatch: filesToWatch)
+        fileWatcher.start()
+    }*/
     
     required init?(coder aDecoder: NSCoder) {
       super.init(coder: aDecoder)
@@ -28,7 +60,7 @@ class ViewController: NSViewController {
         //mainView.translatesAutoresizingMaskIntoConstraints = false
 
         mainView.addSubview(imageBox)
-        imageBox.translatesAutoresizingMaskIntoConstraints = false
+        //imageBox.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activateConstraints([
         mainView.topAnchor.constraintEqualToAnchor(view.topAnchor),
@@ -43,7 +75,7 @@ class ViewController: NSViewController {
         imageBox.bottomAnchor.constraintEqualToAnchor(mainView.bottomAnchor)])
         
         
-        imageBox.imageScaling = NSImageScaling.ScaleProportionallyUpOrDown
+        imageBox.imageScaling = NSImageScaling.ScaleAxesIndependently
     }
     
     func getRandomInt() -> Int {
@@ -75,7 +107,7 @@ class ViewController: NSViewController {
 
     func displayRandomImage() {
         let fileName: String = "\(path)/\(imageArray[randomIndex])"
-        print("The current file is located at \(fileName)\n")
+        //print("The current file is located at \(fileName)\n")
         imageBox.image = NSImage(contentsOfFile: fileName)
         randomIndex = getRandomInt()
 
@@ -102,6 +134,8 @@ class ViewController: NSViewController {
         configureImageBox()
         displayRandomImage()
         NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(ViewController.displayRandomImage), userInfo: nil, repeats: true)
+        initiateDirectoryMonitor()
+        
         
         
         

@@ -13,6 +13,8 @@
 		EB2152941D0F008200C95F3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB2152931D0F008200C95F3A /* Assets.xcassets */; };
 		EB2152971D0F008200C95F3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB2152951D0F008200C95F3A /* Main.storyboard */; };
 		EB2152EF1D0F75C100C95F3A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2152EE1D0F75C100C95F3A /* MainView.swift */; };
+		EB8751081D10DB61001E98F8 /* FileSystemWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8751071D10DB61001E98F8 /* FileSystemWatcher.swift */; };
+		EB87510A1D11AF30001E98F8 /* FolderMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8751091D11AF30001E98F8 /* FolderMonitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		EB2152961D0F008200C95F3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EB2152981D0F008200C95F3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB2152EE1D0F75C100C95F3A /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		EB8751071D10DB61001E98F8 /* FileSystemWatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystemWatcher.swift; sourceTree = "<group>"; };
+		EB8751091D11AF30001E98F8 /* FolderMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				EB2152EE1D0F75C100C95F3A /* MainView.swift */,
 				EB2152981D0F008200C95F3A /* Info.plist */,
 				EB2152901D0F008200C95F3A /* Shuffle_Pop_2.xcdatamodeld */,
+				EB8751071D10DB61001E98F8 /* FileSystemWatcher.swift */,
+				EB8751091D11AF30001E98F8 /* FolderMonitor.swift */,
 			);
 			path = "Shuffle Pop 2";
 			sourceTree = "<group>";
@@ -139,7 +145,9 @@
 			files = (
 				EB21528F1D0F008200C95F3A /* ViewController.swift in Sources */,
 				EB2152EF1D0F75C100C95F3A /* MainView.swift in Sources */,
+				EB8751081D10DB61001E98F8 /* FileSystemWatcher.swift in Sources */,
 				EB2152921D0F008200C95F3A /* Shuffle_Pop_2.xcdatamodeld in Sources */,
+				EB87510A1D11AF30001E98F8 /* FolderMonitor.swift in Sources */,
 				EB21528D1D0F008200C95F3A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
