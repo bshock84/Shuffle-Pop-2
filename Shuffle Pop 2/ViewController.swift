@@ -30,14 +30,15 @@ class ViewController: NSViewController, DirectoryMonitorDelegate {
     
     func customizeMenu() {
         let availableDisplaysByName = screenNames()
-        let displayMenu = NSMenu(title: "Display")
+        let displayMenu = NSMenu(title: "Displays")
         let chooseDisplay = NSMenuItem(title: "Choose Display", action: nil, keyEquivalent: "chooseDisplay")
-        let displayMenuItem = NSMenuItem(title: "Display", action: nil, keyEquivalent: "display")
-        let displayChoiceMenu = NSMenu(title: "Choose Display")
+        let displayMenuItem = NSMenuItem()
+        let displayChoiceMenu = NSMenu(title: "")
         
         displayMenu.addItem(chooseDisplay)
         displayMenuItem.submenu = displayMenu
         NSApp.mainMenu?.addItem(displayMenuItem)
+        chooseDisplay.submenu = displayChoiceMenu
         
         //for display in availableDisplaysByName {
          //   displayChoiceMenu.addItemWithTitle(display, action: #selector(ViewController.displayOnScreen(_:)), keyEquivalent: display)
@@ -46,30 +47,31 @@ class ViewController: NSViewController, DirectoryMonitorDelegate {
         
         if availableDisplaysByName.count > 0 {
             displayChoiceMenu.addItemWithTitle(availableDisplaysByName[0], action: #selector(ViewController.displayOnScreenOne), keyEquivalent: "d1")
-            chooseDisplay.submenu = displayChoiceMenu
         } else {
             print("Apparently there isn't a screen attached to this comptuer.  That is strange.")
         }
         if availableDisplaysByName.count > 1 {
             displayChoiceMenu.addItemWithTitle(availableDisplaysByName[1], action: #selector(ViewController.displayOnScreenTwo), keyEquivalent: "d2")
-            chooseDisplay.submenu = displayChoiceMenu
         }
         if availableDisplaysByName.count > 2 {
             displayChoiceMenu.addItemWithTitle(availableDisplaysByName[2], action: #selector(ViewController.displayOnScreenThree), keyEquivalent: "d3")
-            chooseDisplay.submenu = displayChoiceMenu
         }
         if availableDisplaysByName.count > 3 {
             displayChoiceMenu.addItemWithTitle(availableDisplaysByName[3], action: #selector(ViewController.displayOnScreenFour), keyEquivalent: "d4")
-            chooseDisplay.submenu = displayChoiceMenu
         }
         if availableDisplaysByName.count > 4 {
             displayChoiceMenu.addItemWithTitle(availableDisplaysByName[4], action: #selector(ViewController.displayOnScreenFive), keyEquivalent: "d5")
-            chooseDisplay.submenu = displayChoiceMenu
         }
+        
+        displayMenu.addItemWithTitle("Go Full Screen", action: #selector(ViewController.goFullScreen), keyEquivalent: "f")
         }
     
 
-
+    func goFullScreen() {
+        
+        print("going full screen")
+    }
+    
     func displayOnScreenOne() {
         print("Selected Screen 1")
     }
